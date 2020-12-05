@@ -1,21 +1,14 @@
 package com.android.aws.ui.login
 
-import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
-import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.amplifyframework.core.Amplify
-import com.android.aws.R
+import com.amazonaws.mobile.client.*
+import com.amazonaws.mobile.config.AWSConfiguration
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool
 import com.android.aws.databinding.ActivityLoginBinding
-import com.android.aws.util.afterTextChanged
+import com.android.aws.ui.main.MainActivity
 import timber.log.Timber
 
 
@@ -23,6 +16,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var viewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var userPool: CognitoUserPool
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,85 +26,53 @@ class LoginActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
-        registerObservers()
-        setupListeners()
-
-        Amplify.Auth.fetchAuthSession(
-            { result -> Timber.i("AmplifyQuickstart: $result") },
-            { error -> Timber.e("AmplifyQuickstart: $error") }
-        )
+        setupUserPool()
+        setupAwsAuth()
     }
 
-    private fun registerObservers() {
-        viewModel.loginFormState.observe(this@LoginActivity, Observer {
-            val loginState = it ?: return@Observer
-
-            binding.login.isEnabled = loginState.isDataValid
-
-            if (loginState.usernameError != null) {
-                binding.username.error = getString(loginState.usernameError)
-            }
-            if (loginState.passwordError != null) {
-                binding.password.error = getString(loginState.passwordError)
-            }
-        })
-
-        viewModel.loginResult.observe(this@LoginActivity, Observer {
-            val loginResult = it ?: return@Observer
-
-            binding.loading.visibility = View.GONE
-            showLoginFailed(loginResult.error)
-            if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
-            }
-            setResult(Activity.RESULT_OK)
-
-            finish()
-        })
+    private fun setupUserPool() {
+        userPool = CognitoUserPool(applicationContext, AWSConfiguration(applicationContext))
     }
 
-    private fun setupListeners() {
-        with(binding) {
-            username.afterTextChanged {
-                viewModel.loginDataChanged(username.text.toString(), password.text.toString())
-            }
+    private fun setupAwsAuth() {
+        AWSMobileClient.getInstance()
+            .initialize(applicationContext, object : Callback<UserStateDetails?> {
 
-            password.apply {
-                afterTextChanged {
-                    viewModel.loginDataChanged(username.text.toString(), password.text.toString())
-                }
+                override fun onResult(userStateDetails: UserStateDetails?) {
 
-                setOnEditorActionListener { _, actionId, _ ->
-                    when (actionId) {
-                        EditorInfo.IME_ACTION_DONE ->
-                            viewModel.login(
-                                username.text.toString(),
-                                password.text.toString()
-                            )
+                    if (userStateDetails != null) {
+                        Timber.i(userStateDetails.userState.toString())
+                        when (userStateDetails.userState) {
+                            // after login success a JWT auth token is generated
+                            UserState.SIGNED_IN -> {
+                                val i = Intent(this@LoginActivity, MainActivity::class.java)
+                                startActivity(i)
+                            }
+                            UserState.SIGNED_OUT -> showSignIn()
+                            else -> {
+                                AWSMobileClient.getInstance().signOut()
+                                showSignIn()
+                            }
+                        }
                     }
-                    false
                 }
 
-                login.setOnClickListener {
-                    loading.visibility = View.VISIBLE
-                    viewModel.login(username.text.toString(), password.text.toString())
+                override fun onError(e: Exception) {
+                    Timber.e(e)
                 }
-            }
+            })
+    }
+
+    private fun showSignIn() {
+        try {
+            AWSMobileClient.getInstance().showSignIn(
+                this,
+                SignInUIOptions.builder()
+                    .nextActivity(MainActivity::class.java)
+                    .build()
+            )
+        } catch (e: Exception) {
+            Timber.e(e)
         }
-    }
-
-    private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
-        // TODO : initiate successful logged in experience
-        Toast.makeText(
-            applicationContext,
-            "$welcome $displayName",
-            Toast.LENGTH_LONG
-        ).show()
-    }
-
-    private fun showLoginFailed(error: String) {
-        Toast.makeText(applicationContext, error, Toast.LENGTH_SHORT).show()
     }
 }

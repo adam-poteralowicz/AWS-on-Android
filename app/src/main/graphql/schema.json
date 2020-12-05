@@ -28,7 +28,7 @@
                         "deprecationReason": "https://stackoverflow.com/questions/59868942/graphql-a-schema-must-have-a-query-operation-defined"
                     },
                     {
-                        "name": "syncAWSonAndroids",
+                        "name": "syncCredentials",
                         "description": null,
                         "args": [
                             {
@@ -36,7 +36,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelAWSonAndroidFilterInput",
+                                    "name": "ModelCredentialsFilterInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -74,14 +74,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "ModelAWSonAndroidConnection",
+                            "name": "ModelCredentialsConnection",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "getAWSonAndroid",
+                        "name": "getCredentials",
                         "description": null,
                         "args": [
                             {
@@ -101,14 +101,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "AWSonAndroid",
+                            "name": "Credentials",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "listAWSonAndroids",
+                        "name": "listCredentialss",
                         "description": null,
                         "args": [
                             {
@@ -116,7 +116,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelAWSonAndroidFilterInput",
+                                    "name": "ModelCredentialsFilterInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -144,7 +144,7 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "ModelAWSonAndroidConnection",
+                            "name": "ModelCredentialsConnection",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -168,7 +168,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "ModelAWSonAndroidFilterInput",
+                "name": "ModelCredentialsFilterInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -183,7 +183,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "name",
+                        "name": "login",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -193,17 +193,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "priority",
-                        "description": null,
-                        "type": {
-                            "kind": "INPUT_OBJECT",
-                            "name": "ModelPriorityInput",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "description",
+                        "name": "password",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -220,7 +210,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelAWSonAndroidFilterInput",
+                                "name": "ModelCredentialsFilterInput",
                                 "ofType": null
                             }
                         },
@@ -234,7 +224,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelAWSonAndroidFilterInput",
+                                "name": "ModelCredentialsFilterInput",
                                 "ofType": null
                             }
                         },
@@ -245,7 +235,7 @@
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelAWSonAndroidFilterInput",
+                            "name": "ModelCredentialsFilterInput",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -732,66 +722,6 @@
                 "possibleTypes": null
             },
             {
-                "kind": "INPUT_OBJECT",
-                "name": "ModelPriorityInput",
-                "description": null,
-                "fields": null,
-                "inputFields": [
-                    {
-                        "name": "eq",
-                        "description": null,
-                        "type": {
-                            "kind": "ENUM",
-                            "name": "Priority",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "ne",
-                        "description": null,
-                        "type": {
-                            "kind": "ENUM",
-                            "name": "Priority",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    }
-                ],
-                "interfaces": null,
-                "enumValues": null,
-                "possibleTypes": null
-            },
-            {
-                "kind": "ENUM",
-                "name": "Priority",
-                "description": null,
-                "fields": null,
-                "inputFields": null,
-                "interfaces": null,
-                "enumValues": [
-                    {
-                        "name": "LOW",
-                        "description": null,
-                        "isDeprecated": false,
-                        "deprecationReason": null
-                    },
-                    {
-                        "name": "NORMAL",
-                        "description": null,
-                        "isDeprecated": false,
-                        "deprecationReason": null
-                    },
-                    {
-                        "name": "HIGH",
-                        "description": null,
-                        "isDeprecated": false,
-                        "deprecationReason": null
-                    }
-                ],
-                "possibleTypes": null
-            },
-            {
                 "kind": "SCALAR",
                 "name": "AWSTimestamp",
                 "description": null,
@@ -803,7 +733,7 @@
             },
             {
                 "kind": "OBJECT",
-                "name": "ModelAWSonAndroidConnection",
+                "name": "ModelCredentialsConnection",
                 "description": null,
                 "fields": [
                     {
@@ -815,7 +745,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "OBJECT",
-                                "name": "AWSonAndroid",
+                                "name": "Credentials",
                                 "ofType": null
                             }
                         },
@@ -854,7 +784,7 @@
             },
             {
                 "kind": "OBJECT",
-                "name": "AWSonAndroid",
+                "name": "Credentials",
                 "description": null,
                 "fields": [
                     {
@@ -874,7 +804,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "name",
+                        "name": "login",
                         "description": null,
                         "args": [],
                         "type": {
@@ -890,25 +820,17 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "priority",
+                        "name": "password",
                         "description": null,
                         "args": [],
                         "type": {
-                            "kind": "ENUM",
-                            "name": "Priority",
-                            "ofType": null
-                        },
-                        "isDeprecated": false,
-                        "deprecationReason": null
-                    },
-                    {
-                        "name": "description",
-                        "description": null,
-                        "args": [],
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "String",
-                            "ofType": null
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "String",
+                                "ofType": null
+                            }
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
@@ -988,6 +910,18 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
+                    },
+                    {
+                        "name": "owner",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
                     }
                 ],
                 "inputFields": null,
@@ -1011,7 +945,7 @@
                 "description": null,
                 "fields": [
                     {
-                        "name": "createAWSonAndroid",
+                        "name": "createCredentials",
                         "description": null,
                         "args": [
                             {
@@ -1022,7 +956,7 @@
                                     "name": null,
                                     "ofType": {
                                         "kind": "INPUT_OBJECT",
-                                        "name": "CreateAWSonAndroidInput",
+                                        "name": "CreateCredentialsInput",
                                         "ofType": null
                                     }
                                 },
@@ -1033,7 +967,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelAWSonAndroidConditionInput",
+                                    "name": "ModelCredentialsConditionInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -1041,14 +975,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "AWSonAndroid",
+                            "name": "Credentials",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "updateAWSonAndroid",
+                        "name": "updateCredentials",
                         "description": null,
                         "args": [
                             {
@@ -1059,7 +993,7 @@
                                     "name": null,
                                     "ofType": {
                                         "kind": "INPUT_OBJECT",
-                                        "name": "UpdateAWSonAndroidInput",
+                                        "name": "UpdateCredentialsInput",
                                         "ofType": null
                                     }
                                 },
@@ -1070,7 +1004,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelAWSonAndroidConditionInput",
+                                    "name": "ModelCredentialsConditionInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -1078,14 +1012,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "AWSonAndroid",
+                            "name": "Credentials",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "deleteAWSonAndroid",
+                        "name": "deleteCredentials",
                         "description": null,
                         "args": [
                             {
@@ -1096,7 +1030,7 @@
                                     "name": null,
                                     "ofType": {
                                         "kind": "INPUT_OBJECT",
-                                        "name": "DeleteAWSonAndroidInput",
+                                        "name": "DeleteCredentialsInput",
                                         "ofType": null
                                     }
                                 },
@@ -1107,7 +1041,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelAWSonAndroidConditionInput",
+                                    "name": "ModelCredentialsConditionInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -1115,7 +1049,7 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "AWSonAndroid",
+                            "name": "Credentials",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -1129,7 +1063,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "CreateAWSonAndroidInput",
+                "name": "CreateCredentialsInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -1144,7 +1078,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "name",
+                        "name": "login",
                         "description": null,
                         "type": {
                             "kind": "NON_NULL",
@@ -1158,22 +1092,16 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "priority",
+                        "name": "password",
                         "description": null,
                         "type": {
-                            "kind": "ENUM",
-                            "name": "Priority",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "description",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "String",
-                            "ofType": null
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "String",
+                                "ofType": null
+                            }
                         },
                         "defaultValue": null
                     },
@@ -1194,12 +1122,12 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "ModelAWSonAndroidConditionInput",
+                "name": "ModelCredentialsConditionInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
                     {
-                        "name": "name",
+                        "name": "login",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -1209,17 +1137,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "priority",
-                        "description": null,
-                        "type": {
-                            "kind": "INPUT_OBJECT",
-                            "name": "ModelPriorityInput",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "description",
+                        "name": "password",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -1236,7 +1154,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelAWSonAndroidConditionInput",
+                                "name": "ModelCredentialsConditionInput",
                                 "ofType": null
                             }
                         },
@@ -1250,7 +1168,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelAWSonAndroidConditionInput",
+                                "name": "ModelCredentialsConditionInput",
                                 "ofType": null
                             }
                         },
@@ -1261,7 +1179,7 @@
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelAWSonAndroidConditionInput",
+                            "name": "ModelCredentialsConditionInput",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -1273,7 +1191,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "UpdateAWSonAndroidInput",
+                "name": "UpdateCredentialsInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -1292,7 +1210,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "name",
+                        "name": "login",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -1302,17 +1220,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "priority",
-                        "description": null,
-                        "type": {
-                            "kind": "ENUM",
-                            "name": "Priority",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "description",
+                        "name": "password",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -1338,7 +1246,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "DeleteAWSonAndroidInput",
+                "name": "DeleteCredentialsInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -1373,36 +1281,81 @@
                 "description": null,
                 "fields": [
                     {
-                        "name": "onCreateAWSonAndroid",
+                        "name": "onCreateCredentials",
                         "description": null,
-                        "args": [],
+                        "args": [
+                            {
+                                "name": "owner",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "String",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            }
+                        ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "AWSonAndroid",
+                            "name": "Credentials",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "onUpdateAWSonAndroid",
+                        "name": "onUpdateCredentials",
                         "description": null,
-                        "args": [],
+                        "args": [
+                            {
+                                "name": "owner",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "String",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            }
+                        ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "AWSonAndroid",
+                            "name": "Credentials",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "onDeleteAWSonAndroid",
+                        "name": "onDeleteCredentials",
                         "description": null,
-                        "args": [],
+                        "args": [
+                            {
+                                "name": "owner",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "String",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            }
+                        ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "AWSonAndroid",
+                            "name": "Credentials",
                             "ofType": null
                         },
                         "isDeprecated": false,
