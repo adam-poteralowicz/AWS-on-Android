@@ -1,8 +1,8 @@
 package com.android.aws
 
 import android.app.Application
-import android.util.Log
 import com.amplifyframework.AmplifyException
+import com.amplifyframework.api.aws.AWSApiPlugin
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 import com.amplifyframework.core.Amplify
 import timber.log.Timber
@@ -16,6 +16,7 @@ class AmplifyApp : Application() {
 
     private fun configureAmplify() {
         try {
+            Amplify.addPlugin(AWSApiPlugin()) // UNCOMMENT this line once backend is deployed
             Amplify.addPlugin(AWSCognitoAuthPlugin())
             Amplify.configure(applicationContext)
             Timber.i("Initialized Amplify")
