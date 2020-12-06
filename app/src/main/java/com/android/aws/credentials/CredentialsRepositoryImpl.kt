@@ -7,6 +7,10 @@ import timber.log.Timber
 
 class CredentialsRepositoryImpl : CredentialsRepository {
 
+    /**
+     * DataStore sync starts whenever it is queried
+     */
+
     override fun deleteAll() = Amplify.DataStore.clear(
         { Timber.d("Successfully deleted all records") },
         { Timber.e("Failed to delete all records") }
