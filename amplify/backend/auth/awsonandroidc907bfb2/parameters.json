@@ -1,6 +1,6 @@
 {
     "identityPoolName": "awsonandroidc907bfb2_identitypool_c907bfb2",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "awsonac907bfb2",
     "userPoolName": "awsonandroidc907bfb2_userpool_c907bfb2",
     "autoVerifiedAttributes": [

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "127992752745",
+    "project_id": "aww-android-a3d73",
+    "storage_bucket": "aww-android-a3d73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127992752745:android:56ee17c8112eff5d4710f8",
+        "android_client_info": {
+          "package_name": "com.android.aws"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127992752745-shhb55hgu7v4874dqucvkj8vas501gil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNpt0cJD0SiwWdQKPQb9IqWDtNnIsXdLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127992752745-shhb55hgu7v4874dqucvkj8vas501gil.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
