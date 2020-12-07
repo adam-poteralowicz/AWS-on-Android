@@ -10,5 +10,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="add_credentials">ADD CREDENTIALS</string>
+    <string name="add_credentials_button_text">ADD CREDENTIALS</string>
+    <string name="upload_file">UPLOAD FILE</string>
+    <string name="storage_button_text">GO TO STORAGE</string>
 </resources>

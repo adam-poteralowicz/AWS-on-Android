@@ -1,14 +1,15 @@
 package com.android.aws.ui.main
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.datastore.generated.model.Credentials
-import com.android.aws.R
 import com.android.aws.credentials.CredentialsAdapter
 import com.android.aws.credentials.CredentialsRepositoryImpl
 import com.android.aws.credentials.randomCredentials
 import com.android.aws.databinding.ActivityMainBinding
+import com.android.aws.ui.storage.StorageActivity
 import timber.log.Timber
 
 class MainActivity : Activity() {
@@ -18,8 +19,10 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+
 
         registerObservers()
         setupListeners()
@@ -39,7 +42,12 @@ class MainActivity : Activity() {
     }
 
     private fun setupListeners() {
-        binding.addCredentialsButton.setOnClickListener { credentialsRepository.saveCredentials(randomCredentials()) }
+        binding.addCredentialsButton.setOnClickListener {
+            credentialsRepository.saveCredentials(randomCredentials())
+        }
+        binding.storageButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity, StorageActivity::class.java))
+        }
     }
 
     private fun observeCredentials() {
