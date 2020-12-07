@@ -5,11 +5,15 @@ import android.os.Bundle
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.datastore.generated.model.Credentials
 import com.android.aws.R
+import com.android.aws.credentials.CredentialsAdapter
+import com.android.aws.credentials.CredentialsRepositoryImpl
+import com.android.aws.credentials.randomCredentials
 import com.android.aws.databinding.ActivityMainBinding
 import timber.log.Timber
 
 class MainActivity : Activity() {
 
+    private lateinit var credentialsRepository: CredentialsRepositoryImpl
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,11 +22,13 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
 
         registerObservers()
+        setupListeners()
+        credentialsRepository = CredentialsRepositoryImpl()
     }
 
     override fun onDestroy() {
         Amplify.DataStore.stop(
-            {Timber.d("Stopped observing DataStore")},
+            { Timber.d("Stopped observing DataStore") },
             { error -> Timber.e(error) }
         )
         super.onDestroy()
@@ -32,10 +38,16 @@ class MainActivity : Activity() {
         observeCredentials()
     }
 
+    private fun setupListeners() {
+        binding.addCredentialsButton.setOnClickListener { credentialsRepository.saveCredentials(randomCredentials()) }
+    }
+
     private fun observeCredentials() {
         Amplify.DataStore.observe(Credentials::class.java,
             { Timber.d("Credentials | Observation began") },
-            { /* Update recycler view adapter */ },
+            { credentials -> (binding.credentialsRecyclerView.adapter as CredentialsAdapter)
+                .addItem(credentials.item())
+            },
             { Timber.e("Credentials | Observation failed") },
             { Timber.d("Credentials | Observation complete") }
         )

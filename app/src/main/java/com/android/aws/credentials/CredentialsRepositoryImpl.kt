@@ -5,7 +5,7 @@ import com.amplifyframework.core.model.query.Where
 import com.amplifyframework.datastore.generated.model.Credentials
 import timber.log.Timber
 
-class CredentialsRepositoryImpl : CredentialsRepository {
+class CredentialsRepositoryImpl: CredentialsRepository {
 
     /**
      * DataStore sync starts whenever it is queried
