@@ -19,6 +19,7 @@ class AmplifyApp : Application() {
         try {
             Amplify.addPlugin(AWSApiPlugin()) // UNCOMMENT this line once backend is deployed
             Amplify.addPlugin(AWSCognitoAuthPlugin())
+            Stora
             Amplify.addPlugin(AWSDataStorePlugin())
             Amplify.configure(applicationContext)
             Timber.i("Initialized Amplify")
