@@ -13,4 +13,5 @@
     <string name="add_credentials_button_text">ADD CREDENTIALS</string>
     <string name="upload_file">UPLOAD FILE</string>
     <string name="storage_button_text">GO TO STORAGE</string>
+    <string name="download_file">DOWNLOAD FILE</string>
 </resources>
